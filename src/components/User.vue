@@ -78,6 +78,7 @@
       console.error("Error fetching profile:", error)
     }
   }
+  getProfile()
 
   const handleUpdateProfile = async () => {
     const response = await axios.patch('http://10.24.14.237:8080/profile', {
@@ -119,14 +120,7 @@
   
   const toggleEdit = () => {
     if (isEditing.value) {
-      if (isChangingPassword.value && user.value.newPassword) {
-        user.value.password = user.value.newPassword
-      }
-  
-    //   delete user.value.newPassword
-    //   localStorage.setItem('user', JSON.stringify(user.value))
-      successMessage.value = 'Profile updated successfully!'
-      setTimeout(() => (successMessage.value = ''), 3000)
+      handleUpdateProfile()
     }
     isEditing.value = !isEditing.value
   }
