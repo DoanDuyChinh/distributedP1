@@ -14,7 +14,7 @@
           </div>
           <div class="input-group">
             <label for="password">Phone</label>
-            <input v-model="phone" type="number" placeholder="Enter your password" required />
+            <input v-model="phone" type="text" placeholder="Enter your password" required />
           </div>
           <div class="input-group">
             <label for="password">Password</label>
@@ -62,7 +62,7 @@
         "name": username.value,
         "email": email.value,
         "password": password.value,
-        "phone": phone.value,
+        "phone": phone.value, 
         "gender": gender.value,
       }
       axios.post('http://10.24.14.237:8080/register', resdata) 

@@ -23,7 +23,9 @@
   </template>
   
   <script setup>
+  import axios from 'axios';
   import { ref } from 'vue'
+  import { toast } from 'vue3-toastify';
   import { useRouter, useRoute } from 'vue-router' 
   const username = ref('')
   const password = ref('')
@@ -31,6 +33,20 @@
   const router = useRouter()
   
   const handleLogin = () => {
+    axios.post('http://10.24.14.237:8080/login', {
+      email: username.value,
+      password: password.value
+    })
+    .then((response) => {
+      // console.log(response.data);
+      localStorage.setItem('token', response.data.token)
+      router.push('/profile')
+    })
+    .catch((error) => {
+      console.error(error);
+      // toast.error('Invalid username or password')
+      // errorMessage.value = 'Invalid username or password'
+    });
     router.push('/profile')
   }
   </script>

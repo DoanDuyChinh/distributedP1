@@ -56,7 +56,47 @@
   </template>
   
   <script setup>
+  import axios from 'axios'
   import { ref, onMounted } from 'vue'
+  const token = localStorage.getItem('token')
+  const getProfile = async () => {
+    try {
+      const response = await axios.get('http://10.24.14.237:8080/profile', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+
+      // Gán dữ liệu API trả về vào `user`
+      user.value = {
+        username: response.data.username || '',
+        email: response.data.email || '',
+        phone: response.data.phone || '',
+        gender: response.data.gender || ''
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error)
+    }
+  }
+
+  const handleUpdateProfile = async () => {
+    const response = await axios.patch('http://10.24.14.237:8080/profile', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    },{
+      username: user.value.username,
+      email: user.value.email,
+      phone: user.value.phone,
+      gender: user.gender
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.error("Error updating profile:", error)
+    })
+  }
   
   const user = ref({
     username: '',
