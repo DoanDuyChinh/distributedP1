@@ -9,10 +9,10 @@
         </div>
   
         <div class="profile-details">
-          <div class="detail"><strong>Username:</strong> {{ user.username }}</div>
-          <div class="detail"><strong>Email:</strong> {{ user.email }}</div>
-          <div class="detail"><strong>Phone:</strong> {{ user.phone }}</div>
-          <div class="detail"><strong>Gender:</strong> {{ user.gender }}</div>
+          <div class="detail"><strong>Username:</strong> {{ user.username || "duong"}}</div>
+          <div class="detail"><strong>Email:</strong> {{ user.email || "duong2k3@gmail.com" }}</div>
+          <div class="detail"><strong>Phone:</strong> {{ user.phone || "0964874623"}}</div>
+          <div class="detail"><strong>Gender:</strong> {{ user.gender || "male" }}</div>
           <!-- <div class="detail">
             <strong>Password:</strong> <span>********</span>
             <button class="change-pass-btn" @click="togglePasswordChange">
